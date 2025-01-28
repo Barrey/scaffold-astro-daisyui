@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductSingle from '../../components/product/ProductSingle';
+import { products } from '../../data/products';
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+const relatedProducts = products
+  .filter(p => p.id !== product.id)
+  .map(p => ({
+    id: p.id,
+    name: p.name,
+    price: p.price,
+    image: p.images[0],
+    rating: p.rating,
+    reviews: p.reviews,
+  }));
+
+const features = [
+  {
+    icon: '/icons/delivery.svg',
+    title: 'Fast and free delivery',
+    description: 'Free delivery for all orders over $200',
+  },
+  {
+    icon: '/icons/guarantee.svg',
+    title: 'Money back guarantee',
+    description: 'We return money within 30 days',
+  },
+  {
+    icon: '/icons/support.svg',
+    title: '24/7 customer support',
+    description: 'Friendly 24/7 customer support',
+  },
+  {
+    icon: '/icons/payment.svg',
+    title: 'Secure online payment',
+    description: 'We possess SSL / Secure certificate',
+  },
+];
+---
+
+<Layout title={product.name}>
+  <ProductSingle
+    client:load
+    product={product}
+    relatedProducts={relatedProducts}
+    features={features}
+  />
+</Layout>
