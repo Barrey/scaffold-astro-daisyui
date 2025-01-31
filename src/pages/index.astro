@@ -1,17 +1,74 @@
 ---
-import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <div>
-    <button
-      class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
-    >
-      Button
-    </button>
-    <input type="file" class="file-input w-full max-w-xs" />
+  <!-- Hero Section -->
+  <div class="hero min-h-[60vh] bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">My Blog</h1>
+        <p class="py-6">Thoughts, stories and ideas.</p>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Posts -->
+  <div class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold mb-8">Featured Posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Sample Post Cards */}
+      {
+        [1, 2, 3].map((post) => (
+          <div class="card bg-base-100 border border-base-200">
+            <figure>
+              <img src="https://picsum.photos/400/250" alt="Post thumbnail" />
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">Blog Post {post}</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+              <div class="card-actions justify-end">
+                <button class="btn btn-primary">Read More</button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6">Categories</h2>
+    <div class="flex flex-wrap gap-2">
+      <div class="badge badge-primary p-4">Technology</div>
+      <div class="badge badge-secondary p-4">Design</div>
+      <div class="badge badge-accent p-4">Development</div>
+      <div class="badge badge-ghost p-4">Lifestyle</div>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="container mx-auto px-4 py-12">
+    <div class="card bg-base-100 border border-base-200">
+      <div
+        class="card-body bg-violet-300"
+        style="background-image: url('https://picsum.photos/400/250'); background-size: cover; background-position: right; background-blend-mode: multiply;"
+      >
+        <h2 class="card-title">Subscribe to Newsletter</h2>
+        <p>Get the latest posts delivered right to your inbox.</p>
+        <div class="form-control">
+          <div class="input-group">
+            <input
+              type="text"
+              placeholder="your@email.com"
+              class="input input-bordered md:w-1/3 md:mr-4 w-full mb-4"
+            />
+            <button class="btn btn-primary">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>
